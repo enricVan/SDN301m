@@ -1,0 +1,19 @@
+### 1. Sign up
+POST http://localhost:5000/api/v1/auth/signup
+content-type: application/json
+
+{
+  "email": "mod1@fpt.edu.vn",
+  "password": "abc@123",
+  "type": "google",
+  "roles": ["mod", "member"]
+}
+
+### 2. Sign in
+POST http://localhost:5000/api/v1/auth/signin
+Content-Type: application/json
+
+{
+  "email": "mod1@fpt.edu.vn",
+  "password": "abc@123"
+}

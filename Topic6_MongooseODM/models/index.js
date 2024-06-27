@@ -1,13 +1,20 @@
 const mongoose = require('mongoose')
-
 const User = require('./user.model')
 
-// Cau hinh cho mongoose su dung tren toan du an
 mongoose.Promise = global.Promise
 
-// Khai bao doi tuong dai dien csdl can lam viec cua mongodb server
 const db = {}
-db.mongoose = mongoose
-db.User = User
+db.user = User
+db.connectDB = async () => {
+  mongoose
+    .connect(process.env.MONGO_URI, {
+      dbName: process.env.DB_NAME
+    })
+    .then(() => console.log('Connected to the database'))
+    .catch((err) => {
+      console.error('Cannot connect to the database:', err.message)
+      process.exit()
+    })
+}
 
 module.exports = db

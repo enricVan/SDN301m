@@ -1,8 +1,7 @@
-// Khai bao module 'mongoose'
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-// Tao cau truc du lieu (schema) cua doi tuong user
+// User schema
 const userSchema = new Schema(
   {
     email: {
@@ -16,6 +15,10 @@ const userSchema = new Schema(
     },
     type: {
       type: String,
+      enum: {
+        values: ['system', 'google', 'facebook', 'zalo'],
+        message: '{VALUE} IS NOT SUPPORTED'
+      },
       required: [true, 'Type is required']
     }
   },
@@ -24,6 +27,5 @@ const userSchema = new Schema(
   }
 )
 
-// Tao ra model tu cau truc du lieu tren
 const User = mongoose.model('users', userSchema)
 module.exports = User
